@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Smartphone Selfie Camera Geometry: Reproducible Portrait Capture</title>
+  <meta name="description" content="A developer-facing technical protocol for reproducible smartphone portrait capture, covering camera distance, focal length, lighting, exposure, metadata, and limitations.">
+
+  <link rel="canonical" href="https://drsrinjoysaha.github.io/smartphone-selfie-camera-geometry/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Smartphone Selfie Camera Geometry: Reproducible Portrait Capture">
+  <meta property="og:description" content="A technical reference for consistent smartphone portrait capture and an explanation of camera-distance perspective effects.">
+  <meta property="og:url" content="https://drsrinjoysaha.github.io/smartphone-selfie-camera-geometry/">
+
+  <meta name="robots" content="index,follow">
+
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #566277;
+      --line: #d8dee9;
+      --surface: #f7f9fc;
+      --accent: #165dcc;
+      --max: 780px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fff;
+      font: 17px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+
+    h1, h2, h3 { line-height: 1.2; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 18px; }
+    h2 { margin-top: 42px; font-size: 1.5rem; }
+    h3 { margin-top: 26px; font-size: 1.15rem; }
+
+    a { color: var(--accent); }
+    code {
+      padding: 0.15em 0.35em;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+
+    pre {
+      overflow-x: auto;
+      padding: 18px;
+      background: #101827;
+      color: #f1f5f9;
+      border-radius: 8px;
+    }
+
+    .lede {
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    .notice {
+      padding: 18px 20px;
+      border-left: 4px solid var(--accent);
+      background: var(--surface);
+    }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Smartphone Selfie Camera Geometry: Reproducible Portrait Capture",
+    "description": "A technical protocol for repeatable smartphone portrait capture, focusing on camera geometry, lighting, settings, and metadata.",
+    "mainEntityOfPage": "https://drsrinjoysaha.github.io/smartphone-selfie-camera-geometry/",
+    "author": {
+      "@type": "Organization",
+      "name": "Plastic Surgery by Dr Srinjoy Saha"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Plastic Surgery by Dr Srinjoy Saha"
+    },
+    "inLanguage": "en",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  }
+  </script>
+</head>
+
+<body>
+  <main>
+    <article>
+      <h1>Smartphone Selfie Camera Geometry: Reproducible Portrait Capture</h1>
+
+      <p class="lede">
+        A technical reference for developers, photographers, and imaging practitioners
+        who need a repeatable smartphone portrait-capture workflow.
+      </p>
+
+      <aside class="notice">
+        <strong>Scope:</strong> This page covers camera geometry, illumination, device
+        settings, and repeatability. It is not a diagnostic tool, a physical measurement
+        system, or advice about health, appearance, or treatment.
+      </aside>
+
+      <h2>Why close selfies can look different</h2>
+
+      <p>
+        A close smartphone selfie commonly uses a wide-angle camera. When the camera is
+        close to a three-dimensional subject, nearer regions subtend a larger angle than
+        regions farther away. This can make central regions appear proportionally larger
+        than they do in a more distant capture.
+      </p>
+
+      <p>
+        The primary variable is <strong>camera-to-subject distance</strong>, rather than
+        focal length alone. A longer-equivalent lens is useful because it allows the
+        camera to be placed farther away while retaining practical portrait framing.
+      </p>
+
+      <h2>Minimal reproducible setup</h2>
+
+      <ul>
+        <li>Use a rear camera and a tripod or fixed mount.</li>
+        <li>Use the same device, camera module, capture mode, and output resolution.</li>
+        <li>Place camera and subject at repeatable marked positions.</li>
+        <li>Use a neutral matte background and one stable light source.</li>
+        <li>Disable beauty filters, face reshaping, smoothing, and comparable effects.</li>
+      </ul>
+
+      <h2>Camera geometry</h2>
+
+      <h3>Distance</h3>
+      <p>
+        Start with a camera-to-subject distance of approximately 1.5–2.5 metres for
+        head-and-shoulders framing, then document the distance actually used. Keep it
+        fixed for later captures.
+      </p>
+
+      <h3>Lens selection</h3>
+      <p>
+        When available, choose a rear-camera mode offering approximately 50–85 mm
+        full-frame-equivalent framing, often labelled 2× or 3× on a smartphone. Avoid
+        digital zoom if a native camera module is available.
+      </p>
+
+      <h2>Focus, exposure, and illumination</h2>
+
+      <ul>
+        <li>Focus near the subject plane and lock focus where supported.</li>
+        <li>Set and lock exposure where supported.</li>
+        <li>Use one stable light source; avoid mixed daylight and indoor lighting.</li>
+        <li>Keep light position and colour rendering consistent across sessions.</li>
+      </ul>
+
+      <h2>Views and metadata</h2>
+
+      <p>With the camera fixed, capture front, left/right 45-degree oblique, and left/right 90-degree profile views. Keep camera height, distance, lens selection, and lighting unchanged.</p>
+
+      <pre><code>YYYY-MM-DD_project_camera_lens_distance_view_lighting_v01.jpg
+
+2026-08-16_demo_phoneA_3x_2m_front_LED5000K_v01.jpg</code></pre>
+
+      <p>
+        Preserve original image files and record device, camera module, zoom mode,
+        camera distance, camera height, view, lighting, and processing settings.
+      </p>
+
+      <h2>Limitations</h2>
+
+      <p>
+        Smartphone photographs are rendered two-dimensional images, not calibrated
+        physical models. Device-specific optics, computational processing, pose, focus,
+        lighting, compression, and display pipelines can all affect results. Do not infer
+        real-world dimensions, health status, or outcomes from uncalibrated consumer-camera
+        imagery.
+      </p>
+
+      <h2>Related resources</h2>
+
+      <ul>
+        <li><a href="https://www.srinjoysaha.com/" rel="noopener">Project homepage</a></li>
+        <li><a href="https://maps.app.goo.gl/6Y7ibwYrJE3NRp9Z6" rel="noopener">Location on Google Maps</a></li>
+        <li><a href="https://www.srinjoysaha.com/selfie-distortion-cosmetic-surgery" rel="noopener">Contextual reading: selfie camera geometry</a></li>
+        <li><a href="https://www.srinjoysaha.com/3d-surgical-simulation-accuracy" rel="noopener">Contextual reading: 3D simulation accuracy</a></li>
+        <li><a href="https://github.com/drsrinjoysaha/smartphone-selfie-camera-geometry" rel="noopener">Source repository</a></li>
+      </ul>
+    </article>
+
+    <footer>
+      <p>Published as a technical photography and imaging reference. Last updated: 2026-08-16.</p>
+    </footer>
+  </main>
+</body>
+</html>
