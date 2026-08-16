@@ -5,81 +5,348 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Smartphone Selfie Camera Geometry: Reproducible Portrait Capture</title>
-  <meta name="description" content="A developer-facing technical protocol for reproducible smartphone portrait capture, covering camera distance, focal length, lighting, exposure, metadata, and limitations.">
+  <meta name="description" content="A developer-facing technical protocol for reproducible smartphone portrait capture, covering camera distance, lens selection, lighting, exposure, positioning, metadata, privacy, and limitations.">
 
   <link rel="canonical" href="https://drsrinjoysaha.github.io/smartphone-selfie-camera-geometry/">
 
+  <meta name="robots" content="index,follow">
+
   <meta property="og:type" content="article">
   <meta property="og:title" content="Smartphone Selfie Camera Geometry: Reproducible Portrait Capture">
-  <meta property="og:description" content="A technical reference for consistent smartphone portrait capture and an explanation of camera-distance perspective effects.">
+  <meta property="og:description" content="A technical reference for consistent smartphone portrait capture, including camera distance, perspective, lighting, device settings, and repeatable metadata workflows.">
   <meta property="og:url" content="https://drsrinjoysaha.github.io/smartphone-selfie-camera-geometry/">
+  <meta property="og:image" content="https://drsrinjoysaha.github.io/smartphone-selfie-camera-geometry/Plastic_Surgery_by_Dr_Srinjoy_Saha_project_camera_lens_distance_view_lighting_v01.png">
+  <meta property="og:image:alt" content="Technical illustration of reproducible smartphone portrait capture geometry, showing a close wide-angle setup and a farther fixed-camera setup.">
 
-  <meta name="robots" content="index,follow">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Smartphone Selfie Camera Geometry: Reproducible Portrait Capture">
+  <meta name="twitter:description" content="A technical protocol for repeatable smartphone portrait capture and more consistent image comparisons.">
+  <meta name="twitter:image" content="https://drsrinjoysaha.github.io/smartphone-selfie-camera-geometry/Plastic_Surgery_by_Dr_Srinjoy_Saha_project_camera_lens_distance_view_lighting_v01.png">
 
   <style>
     :root {
-      color-scheme: light;
       --ink: #172033;
       --muted: #566277;
       --line: #d8dee9;
       --surface: #f7f9fc;
+      --surface-dark: #101827;
       --accent: #165dcc;
-      --max: 780px;
+      --accent-dark: #0d3d8a;
+      --blue-bg: #eaf3ff;
+      --blue-line: #8bc0ff;
+      --green-bg: #eaf8f0;
+      --green-line: #70c79a;
+      --amber-bg: #fff5dc;
+      --amber-line: #f0b84a;
+      --purple-bg: #f3edff;
+      --purple-line: #ae8ff0;
+      --rose-bg: #fff0f2;
+      --rose-line: #f0a0ae;
+      --max: 840px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       color: var(--ink);
-      background: #fff;
-      font: 17px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #ffffff;
+      font: 17px/1.7 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 0.16em;
+    }
+
+    a:hover {
+      color: var(--accent-dark);
     }
 
     main {
       width: min(calc(100% - 32px), var(--max));
       margin: 0 auto;
-      padding: 56px 0 72px;
+      padding: 42px 0 76px;
     }
 
-    h1, h2, h3 { line-height: 1.2; }
-    h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 18px; }
-    h2 { margin-top: 42px; font-size: 1.5rem; }
-    h3 { margin-top: 26px; font-size: 1.15rem; }
+    article {
+      overflow-wrap: break-word;
+    }
 
-    a { color: var(--accent); }
+    h1,
+    h2,
+    h3 {
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0 0 18px;
+      font-size: clamp(2.15rem, 5vw, 3.35rem);
+    }
+
+    h2 {
+      margin: 52px 0 18px;
+      padding-top: 4px;
+      font-size: clamp(1.55rem, 3vw, 2rem);
+    }
+
+    h3 {
+      margin: 30px 0 10px;
+      font-size: 1.22rem;
+    }
+
+    p,
+    ul,
+    ol {
+      margin: 0 0 18px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .eyebrow {
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .lede {
+      max-width: 760px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .hero-figure,
+    .inline-figure {
+      margin: 28px 0 36px;
+    }
+
+    .hero-figure img,
+    .inline-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 12px 30px rgba(23, 32, 51, 0.12);
+    }
+
+    .hero-figure figcaption,
+    .inline-figure figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .callout {
+      margin: 28px 0;
+      padding: 22px 24px;
+      border: 1px solid;
+      border-left-width: 5px;
+      border-radius: 12px;
+    }
+
+    .callout h2,
+    .callout h3 {
+      margin: 0 0 10px;
+      padding: 0;
+      font-size: 1.16rem;
+    }
+
+    .callout p:last-child,
+    .callout ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout-blue {
+      background: var(--blue-bg);
+      border-color: var(--blue-line);
+    }
+
+    .callout-green {
+      background: var(--green-bg);
+      border-color: var(--green-line);
+    }
+
+    .callout-amber {
+      background: var(--amber-bg);
+      border-color: var(--amber-line);
+    }
+
+    .callout-purple {
+      background: var(--purple-bg);
+      border-color: var(--purple-line);
+    }
+
+    .callout-rose {
+      background: var(--rose-bg);
+      border-color: var(--rose-line);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 26px 0;
+    }
+
+    .card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #ffffff;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--blue-bg);
+      color: var(--accent-dark);
+      font-size: 0.76rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
     code {
       padding: 0.15em 0.35em;
-      background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 4px;
+      background: var(--surface);
+      color: #26334c;
+      font-size: 0.92em;
     }
 
     pre {
       overflow-x: auto;
-      padding: 18px;
-      background: #101827;
-      color: #f1f5f9;
-      border-radius: 8px;
-    }
-
-    .lede {
-      font-size: 1.2rem;
-      color: var(--muted);
-    }
-
-    .notice {
+      margin: 20px 0;
       padding: 18px 20px;
-      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      background: var(--surface-dark);
+      color: #eef4ff;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    pre code {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
       background: var(--surface);
+      font-size: 0.9rem;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .checklist {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .checklist li::before {
+      position: absolute;
+      left: 0;
+      top: 0.16em;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #dff6e8;
+      color: #167348;
+      content: "✓";
+      font-size: 0.78rem;
+      font-weight: 800;
+      line-height: 20px;
+      text-align: center;
     }
 
     footer {
-      margin-top: 48px;
-      padding-top: 24px;
+      margin-top: 56px;
+      padding-top: 28px;
       border-top: 1px solid var(--line);
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.93rem;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        width: min(calc(100% - 24px), var(--max));
+        padding-top: 28px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .callout {
+        padding: 18px;
+      }
+
+      th,
+      td {
+        min-width: 155px;
+      }
     }
   </style>
 
@@ -88,8 +355,9 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "Smartphone Selfie Camera Geometry: Reproducible Portrait Capture",
-    "description": "A technical protocol for repeatable smartphone portrait capture, focusing on camera geometry, lighting, settings, and metadata.",
+    "description": "A technical protocol for repeatable smartphone portrait capture, focusing on camera geometry, lighting, device settings, metadata, privacy, and limitations.",
     "mainEntityOfPage": "https://drsrinjoysaha.github.io/smartphone-selfie-camera-geometry/",
+    "image": "https://drsrinjoysaha.github.io/smartphone-selfie-camera-geometry/Plastic_Surgery_by_Dr_Srinjoy_Saha_project_camera_lens_distance_view_lighting_v01.png",
     "author": {
       "@type": "Organization",
       "name": "Plastic Surgery by Dr Srinjoy Saha"
@@ -99,6 +367,8 @@
       "name": "Plastic Surgery by Dr Srinjoy Saha"
     },
     "inLanguage": "en",
+    "datePublished": "2026-08-16",
+    "dateModified": "2026-08-16",
     "license": "https://creativecommons.org/licenses/by/4.0/"
   }
   </script>
@@ -107,103 +377,577 @@
 <body>
   <main>
     <article>
+      <p class="eyebrow">Technical reference · smartphone imaging</p>
+
       <h1>Smartphone Selfie Camera Geometry: Reproducible Portrait Capture</h1>
 
       <p class="lede">
-        A technical reference for developers, photographers, and imaging practitioners
-        who need a repeatable smartphone portrait-capture workflow.
+        A practical, developer-facing protocol for making repeatable smartphone portrait
+        captures. It focuses on camera geometry, capture settings, illumination, metadata,
+        image-processing controls, and the limits of consumer-camera photographs.
       </p>
 
-      <aside class="notice">
-        <strong>Scope:</strong> This page covers camera geometry, illumination, device
-        settings, and repeatability. It is not a diagnostic tool, a physical measurement
-        system, or advice about health, appearance, or treatment.
+      <figure class="hero-figure">
+        <img
+          src="Plastic_Surgery_by_Dr_Srinjoy_Saha_project_camera_lens_distance_view_lighting_v01.png"
+          alt="Technical illustration comparing a close wide-angle smartphone selfie setup with a more distant smartphone mounted on an eye-level tripod, showing differences in camera-to-subject distance, field of view, alignment grid, fixed lighting, and repeatable portrait capture."
+          width="1600"
+          height="900"
+          loading="eager"
+          fetchpriority="high">
+        <figcaption>
+          Camera-to-subject distance is the primary control for perspective. A consistent,
+          more distant fixed-camera setup can reduce avoidable variation between captures.
+        </figcaption>
+      </figure>
+
+      <aside class="callout callout-blue">
+        <h2>Scope and intended use</h2>
+        <p>
+          This is a technical photography and imaging workflow. It is intended to improve
+          consistency in a series of smartphone portraits by controlling variables such as
+          distance, camera position, lens selection, framing, lighting, focus, exposure,
+          and file management.
+        </p>
+        <p>
+          It is not a diagnostic tool, a calibrated measurement system, a three-dimensional
+          scanner, an identity-verification method, or advice about health, appearance, or
+          treatment. A consumer-camera image should not be used to infer real-world physical
+          dimensions, health status, or outcomes.
+        </p>
       </aside>
 
       <h2>Why close selfies can look different</h2>
 
       <p>
-        A close smartphone selfie commonly uses a wide-angle camera. When the camera is
-        close to a three-dimensional subject, nearer regions subtend a larger angle than
-        regions farther away. This can make central regions appear proportionally larger
-        than they do in a more distant capture.
+        Smartphones are frequently used at arm’s length. In that position, the camera is
+        relatively close to a three-dimensional subject and commonly uses a wide-angle
+        camera module. Regions closer to the camera occupy a larger angle of view than
+        regions farther away. In a close portrait, this geometric relationship can change
+        the apparent relative size and spacing of features in the rendered image.
       </p>
 
       <p>
-        The primary variable is <strong>camera-to-subject distance</strong>, rather than
-        focal length alone. A longer-equivalent lens is useful because it allows the
-        camera to be placed farther away while retaining practical portrait framing.
+        The important technical point is that perspective is determined principally by
+        <strong>camera-to-subject distance</strong>. Focal length changes the field of
+        view and framing. When a longer-equivalent lens is selected and the camera is moved
+        farther away to preserve the same framing, the perspective changes because the
+        camera position changed—not because the lens independently “flattened” the subject.
       </p>
 
-      <h2>Minimal reproducible setup</h2>
+      <aside class="callout callout-amber">
+        <h3>Core principle</h3>
+        <p>
+          Do not compare a close arm’s-length selfie directly with a photograph made from a
+          fixed, more distant camera position. The two images use different projection
+          geometries and may not be visually comparable, even when they show the same
+          subject in the same environment.
+        </p>
+      </aside>
+
+      <h2>Objective: reduce variable noise</h2>
+
+      <p>
+        A reproducible capture protocol is an engineering exercise in reducing uncontrolled
+        variation. Smartphone imaging systems make many automatic choices: selecting a
+        camera module, switching zoom modes, adjusting exposure, changing white balance,
+        applying HDR, sharpening a face, smoothing skin, or altering the output through
+        computational photography. Those choices can be useful for casual photographs, but
+        they complicate comparisons across dates, devices, rooms, and lighting conditions.
+      </p>
+
+      <p>
+        The workflow below establishes a stable baseline. It does not eliminate all
+        variation, but it documents and controls enough variables to make a sequence more
+        technically interpretable.
+      </p>
+
+      <div class="grid">
+        <section class="card">
+          <span class="label">Control</span>
+          <h3>Geometry</h3>
+          <p>
+            Fix camera height, camera position, subject distance, camera orientation, and
+            the subject’s repeatable position.
+          </p>
+        </section>
+
+        <section class="card">
+          <span class="label">Control</span>
+          <h3>Optics</h3>
+          <p>
+            Use the same camera module and the same native lens or zoom setting for each
+            capture session.
+          </p>
+        </section>
+
+        <section class="card">
+          <span class="label">Control</span>
+          <h3>Illumination</h3>
+          <p>
+            Keep lighting direction, source position, approximate intensity, and colour
+            rendering as consistent as practical.
+          </p>
+        </section>
+
+        <section class="card">
+          <span class="label">Control</span>
+          <h3>Data</h3>
+          <p>
+            Preserve original images and record device, capture configuration, location,
+            date, view, and processing settings.
+          </p>
+        </section>
+      </div>
+
+      <h2>1. Equipment and capture environment</h2>
+
+      <p>
+        The recommended minimum setup is deliberately simple. A stable setup generally
+        matters more than expensive hardware. Use a single phone consistently whenever
+        possible, a stable mount, repeatable positions for the camera and subject, one
+        controlled source of light, and a neutral background.
+      </p>
 
       <ul>
-        <li>Use a rear camera and a tripod or fixed mount.</li>
-        <li>Use the same device, camera module, capture mode, and output resolution.</li>
-        <li>Place camera and subject at repeatable marked positions.</li>
-        <li>Use a neutral matte background and one stable light source.</li>
-        <li>Disable beauty filters, face reshaping, smoothing, and comparable effects.</li>
+        <li>A smartphone with a rear camera.</li>
+        <li>A tripod, fixed mount, or other stable support.</li>
+        <li>A remote shutter or the phone’s self-timer to reduce motion at capture.</li>
+        <li>A neutral, matte background that does not create reflections or colour cast.</li>
+        <li>A floor marker for the subject and a marker for the tripod position.</li>
+        <li>One stable light source, such as a diffused LED or soft light.</li>
+        <li>Optional: tape or a visual reference point at eye level for alignment.</li>
       </ul>
 
-      <h2>Camera geometry</h2>
+      <aside class="callout callout-green">
+        <h3>Prefer the rear camera when practical</h3>
+        <p>
+          Rear-facing smartphone cameras commonly offer better image quality and may provide
+          a native moderate-telephoto camera module. A front-facing camera can still be used
+          if necessary, but it should be treated as a separate capture configuration and not
+          mixed with a rear-camera sequence.
+        </p>
+      </aside>
 
-      <h3>Distance</h3>
+      <h2>2. Camera geometry and lens selection</h2>
+
+      <h3>2.1 Fix the camera-to-subject distance</h3>
+
       <p>
-        Start with a camera-to-subject distance of approximately 1.5–2.5 metres for
-        head-and-shoulders framing, then document the distance actually used. Keep it
-        fixed for later captures.
+        Choose a camera-to-subject distance that can be physically repeated. For
+        head-and-shoulders framing, a starting range of approximately 1.5 to 2.5 metres is
+        often practical, depending on room size, camera module, and desired framing. Measure
+        the chosen distance and mark the floor position for both the tripod and subject.
       </p>
 
-      <h3>Lens selection</h3>
       <p>
-        When available, choose a rear-camera mode offering approximately 50–85 mm
-        full-frame-equivalent framing, often labelled 2× or 3× on a smartphone. Avoid
-        digital zoom if a native camera module is available.
+        The selected distance itself is less important than repeatability. A fixed physical
+        reference is more reliable than estimating distance by eye. If the room permits,
+        leave the tripod at a marked location. If equipment must be removed, measure and
+        document the position before each new session.
       </p>
 
-      <h2>Focus, exposure, and illumination</h2>
+      <h3>2.2 Choose a stable lens or native camera mode</h3>
+
+      <p>
+        When available, a rear-camera mode providing roughly 50–85 mm full-frame-equivalent
+        framing can be a practical starting point for portrait-like framing. Depending on
+        the phone, this may be labelled 2× or 3×. Device labels are not standardized:
+        camera modules, sensor crops, and computational processing vary between phones.
+      </p>
+
+      <p>
+        Avoid switching randomly between the ultrawide, main, telephoto, front-facing, and
+        digitally zoomed camera modes. For a series, document one chosen configuration and
+        retain it. If a mode change is unavoidable, treat subsequent images as a new series
+        or clearly label the transition in the metadata.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Recommended practice</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Camera position</td>
+              <td>Use a tripod and marked position.</td>
+              <td>Camera position controls perspective.</td>
+            </tr>
+            <tr>
+              <td>Distance</td>
+              <td>Measure and repeat a fixed distance.</td>
+              <td>Reduces geometric variation between sessions.</td>
+            </tr>
+            <tr>
+              <td>Lens or zoom mode</td>
+              <td>Use the same native rear-camera mode.</td>
+              <td>Reduces changes in framing and processing behaviour.</td>
+            </tr>
+            <tr>
+              <td>Digital zoom</td>
+              <td>Avoid it when a native optical camera mode is available.</td>
+              <td>Digital scaling may reduce detail and change processing.</td>
+            </tr>
+            <tr>
+              <td>Phone orientation</td>
+              <td>Use the same portrait or landscape orientation throughout.</td>
+              <td>Maintains a consistent frame and image pipeline.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>2.3 Keep capture mode constant</h3>
+
+      <p>
+        Smartphones can apply automatic enhancement even when an image looks unedited.
+        Portrait blur, face reshaping, skin smoothing, beauty filters, AI enhancement,
+        retouching, and scene optimization can alter the output. Disable these features
+        where the application permits. If a phone cannot disable a particular processing
+        feature, document the application, device model, and selected mode.
+      </p>
+
+      <ul class="checklist">
+        <li>Use the same phone and rear camera module for the complete series.</li>
+        <li>Use the same lens selection or zoom setting.</li>
+        <li>Keep output resolution and aspect ratio unchanged.</li>
+        <li>Keep HDR, portrait mode, filters, and retouching settings unchanged.</li>
+        <li>Disable beauty filters, face reshaping, and skin smoothing where possible.</li>
+        <li>Do not overwrite original image files after capture.</li>
+      </ul>
+
+      <h2>3. Focus, exposure, and colour consistency</h2>
+
+      <h3>3.1 Focus control</h3>
+
+      <p>
+        Focus affects perceived sharpness and can affect image-processing decisions. Focus
+        on a stable, high-contrast point near the intended plane of the subject. In a
+        portrait-style image, a point near the nearer eye is commonly used. If the camera
+        application supports focus lock, frame the subject, set focus, and lock it before
+        capture.
+      </p>
+
+      <h3>3.2 Exposure control</h3>
+
+      <p>
+        Automatic exposure algorithms react to changes in the background, clothing,
+        illumination, and scene brightness. This can make a sequence appear brighter or
+        darker even when the physical setup is similar. Where supported, set exposure after
+        lighting is in place and lock auto-exposure. Keep the same exposure-compensation
+        setting for future sessions.
+      </p>
+
+      <p>
+        If the device does not allow exposure lock, the best fallback is to maintain the
+        same lighting, background, and approximate time-of-day conditions. Record that
+        limitation in the capture log.
+      </p>
+
+      <h3>3.3 White balance and lighting</h3>
+
+      <p>
+        White balance is the process by which a camera attempts to render neutral colours
+        under different illumination. Automatic white balance may make different corrections
+        from one capture to the next, especially when daylight is mixed with warm indoor
+        lighting. Use one stable primary light source and avoid mixed lighting where
+        possible.
+      </p>
+
+      <p>
+        A neutral LED or soft source with a nominal colour temperature around 5000 K can be
+        practical, but consistency is more important than a particular Kelvin value. The
+        key requirement is to keep the source, its position, its approximate distance, and
+        the surrounding environment unchanged.
+      </p>
+
+      <aside class="callout callout-purple">
+        <h3>Lighting documentation checklist</h3>
+        <ul>
+          <li>Light type and approximate placement.</li>
+          <li>Source-to-subject distance.</li>
+          <li>Colour-temperature setting, if available.</li>
+          <li>Whether daylight was present.</li>
+          <li>Whether another source such as a ceiling lamp was switched on.</li>
+          <li>Whether exposure and white balance were locked or automatic.</li>
+        </ul>
+      </aside>
+
+      <h2>4. Positioning and geometric alignment</h2>
+
+      <p>
+        A repeatable workflow requires physical reference points. The simplest approach is
+        to place a marker where the tripod stands and another where the subject stands. The
+        camera should be mounted near eye level for a neutral reference view. Keep the phone
+        level and avoid a strong upward or downward tilt unless that angle is intentionally
+        part of the documented protocol.
+      </p>
+
+      <h3>4.1 Use a simple alignment reference</h3>
+
+      <p>
+        Enable the camera grid if it is available. Align the image horizon and maintain a
+        similar head position within the frame. A small tape marker at eye height on a wall
+        or mirror can provide a repeatable gaze target. The tripod-mounted camera lens should
+        remain at the same height as that reference point.
+      </p>
+
+      <p>
+        Keep posture and stance consistent. For a fixed capture, place the heels or another
+        stable point at the floor marker, keep the torso upright, and avoid changing camera
+        position while the standard views are captured.
+      </p>
+
+      <figure class="inline-figure">
+        <img
+          src="smartphone-camera-geometry-perspective-comparison.png"
+          alt="Split-screen technical illustration of smartphone portrait capture geometry. On the left, a phone is held close in a wide-angle setup with broad field-of-view lines. On the right, a phone is mounted on an eye-level tripod farther from the subject with a narrower field of view, floor-position marker, neutral background, soft light, alignment grid, distance arrow, and repeatability checklist icon."
+          width="1600"
+          height="900"
+          loading="lazy">
+        <figcaption>
+          Placeholder for the second technical illustration: a close wide-angle capture
+          compared with a more distant, tripod-mounted capture. The visual emphasizes
+          field of view, camera-to-subject distance, eye-level alignment, floor markers,
+          controlled illumination, and repeatable setup.
+        </figcaption>
+      </figure>
+
+      <aside class="callout callout-rose">
+        <h3>Image placeholder instructions</h3>
+        <p>
+          Upload the second illustration to the repository root using this exact filename:
+          <code>smartphone-camera-geometry-perspective-comparison.png</code>. If you place
+          it in an <code>images</code> folder instead, change the image source to
+          <code>images/smartphone-camera-geometry-perspective-comparison.png</code>.
+        </p>
+      </aside>
+
+      <h3>4.2 Standard capture views</h3>
+
+      <p>
+        Keep the camera fixed and rotate the subject rather than moving the lens. A standard
+        series can include the following views:
+      </p>
+
+      <ol>
+        <li>
+          <strong>True front, 0 degrees:</strong> The subject faces the camera directly,
+          with head upright and shoulders square to the sensor.
+        </li>
+        <li>
+          <strong>Left oblique, approximately 45 degrees:</strong> The subject turns the
+          head and torso approximately 45 degrees to the left while the camera stays fixed.
+        </li>
+        <li>
+          <strong>Right oblique, approximately 45 degrees:</strong> Repeat the equivalent
+          position on the right side.
+        </li>
+        <li>
+          <strong>Left profile, approximately 90 degrees:</strong> The subject turns to the
+          left until a true side-oriented view is achieved.
+        </li>
+        <li>
+          <strong>Right profile, approximately 90 degrees:</strong> Repeat on the right.
+        </li>
+      </ol>
+
+      <p>
+        The purpose of standard views is consistency of orientation and framing. The stated
+        angles are practical reference points, not a substitute for calibrated measurement.
+      </p>
+
+      <h2>5. Capture cadence and repeatability</h2>
+
+      <p>
+        Decide the capture schedule before beginning a sequence. A fixed schedule, such as
+        weekly or monthly, is usually more useful than a stream of irregular ad-hoc images.
+        The appropriate interval depends on the documentation project, but it should be
+        recorded and followed consistently.
+      </p>
+
+      <p>
+        A regular schedule does not convert photographs into objective biometric data. It
+        simply reduces inconsistent sampling and makes the resulting visual timeline easier
+        to organize, inspect, and reproduce.
+      </p>
+
+      <aside class="callout callout-green">
+        <h3>Practical capture sequence</h3>
+        <ol>
+          <li>Set up the same camera, tripod, light, background, and floor markers.</li>
+          <li>Confirm lens selection, resolution, and processing settings.</li>
+          <li>Set focus and exposure; lock them if the phone supports locking.</li>
+          <li>Capture the same standard views without moving the camera.</li>
+          <li>Review for obvious blur or framing errors, then retain the original files.</li>
+          <li>Record metadata immediately after the session.</li>
+        </ol>
+      </aside>
+
+      <h2>6. File naming, metadata, and version control</h2>
+
+      <p>
+        A consistent file name makes a capture set easier to search, sort, compare, and
+        preserve. Use a machine-sortable date at the start of every filename. Include enough
+        configuration information to identify the capture context without relying on memory.
+      </p>
+
+      <pre><code>YYYY-MM-DD_project_camera_lens_distance_view_lighting_v01.jpg</code></pre>
+
+      <p>Example:</p>
+
+      <pre><code>2026-08-16_demo_phoneA_3x_2m_front_LED5000K_v01.jpg</code></pre>
+
+      <p>
+        A filename cannot hold every relevant detail. Keep a simple capture log in Markdown,
+        CSV, or JSON. The log should preserve configuration details and note any deviation
+        from the standard setup.
+      </p>
+
+      <pre><code>{
+  "date": "2026-08-16",
+  "device": "Phone A",
+  "camera": "rear telephoto",
+  "zoom_mode": "3x",
+  "distance_m": 2.0,
+  "camera_height": "eye level",
+  "view": "front",
+  "light": "LED, nominal 5000K",
+  "focus": "locked",
+  "exposure": "locked",
+  "processing": "beauty filters disabled",
+  "version": "v01"
+}</code></pre>
+
+      <h3>Original files and privacy</h3>
+
+      <p>
+        Retain original image files without overwriting them. Derivative images, crops,
+        illustrations, or web-optimized copies should be clearly labelled as derivatives.
+        Do not upload identifiable portraits, embedded location data, or other sensitive
+        information to a public repository without explicit permission and an appropriate
+        privacy review.
+      </p>
+
+      <p>
+        A private repository or encrypted storage is generally more appropriate for sensitive
+        images. This public technical page should use diagrams, generic illustrations, or
+        fully authorized images rather than private capture sets.
+      </p>
+
+      <h2>7. Limitations of smartphone portrait images</h2>
+
+      <p>
+        A smartphone portrait is a rendered two-dimensional image, not a precise physical
+        model. Even with careful setup, visual differences can arise from optics, camera
+        software, movement, lighting, focus distance, compression, screen rendering, and
+        editing pipelines. A protocol improves consistency; it does not eliminate these
+        variables or transform a phone into a calibrated measurement instrument.
+      </p>
 
       <ul>
-        <li>Focus near the subject plane and lock focus where supported.</li>
-        <li>Set and lock exposure where supported.</li>
-        <li>Use one stable light source; avoid mixed daylight and indoor lighting.</li>
-        <li>Keep light position and colour rendering consistent across sessions.</li>
+        <li>Different phone models use different lenses, sensors, crop factors, and algorithms.</li>
+        <li>Some devices automatically switch camera modules in low light or at certain zoom levels.</li>
+        <li>HDR, denoising, sharpening, and face-aware processing may vary between captures.</li>
+        <li>Small differences in pose, head tilt, facial expression, or camera height can alter appearance.</li>
+        <li>Lighting direction and shadow can strongly affect apparent contours and colour.</li>
+        <li>Social-media uploads may crop, compress, resize, or reprocess the original image.</li>
       </ul>
 
-      <h2>Views and metadata</h2>
+      <aside class="callout callout-amber">
+        <h3>Interpretation boundary</h3>
+        <p>
+          Use this protocol to create a more repeatable photography workflow. Do not infer
+          physical dimensions, health status, personal identity, or outcomes from
+          uncalibrated consumer-camera images. Where a project requires measurement or
+          scientific analysis, use an appropriate calibrated method and document its
+          validation separately.
+        </p>
+      </aside>
 
-      <p>With the camera fixed, capture front, left/right 45-degree oblique, and left/right 90-degree profile views. Keep camera height, distance, lens selection, and lighting unchanged.</p>
+      <h2>Technical summary</h2>
 
-      <pre><code>Plastic_Surgery_by_Dr_Srinjoy_Saha_project_camera_lens_distance_view_lighting_v01.png</code></pre>
+      <div class="grid">
+        <section class="card">
+          <h3>Distance first</h3>
+          <p>
+            Camera-to-subject distance is the primary determinant of perspective. Keep it
+            fixed and physically documented.
+          </p>
+        </section>
 
-      <p>
-        Preserve original image files and record device, camera module, zoom mode,
-        camera distance, camera height, view, lighting, and processing settings.
-      </p>
+        <section class="card">
+          <h3>Keep the camera stable</h3>
+          <p>
+            Use a tripod, constant height, constant orientation, and a consistent lens or
+            camera mode.
+          </p>
+        </section>
 
-      <h2>Limitations</h2>
+        <section class="card">
+          <h3>Control the light</h3>
+          <p>
+            Use one stable source and avoid mixed lighting. Record the setup and lock
+            exposure or white balance where supported.
+          </p>
+        </section>
 
-      <p>
-        Smartphone photographs are rendered two-dimensional images, not calibrated
-        physical models. Device-specific optics, computational processing, pose, focus,
-        lighting, compression, and display pipelines can all affect results. Do not infer
-        real-world dimensions, health status, or outcomes from uncalibrated consumer-camera
-        imagery.
-      </p>
+        <section class="card">
+          <h3>Preserve context</h3>
+          <p>
+            Retain original files and capture metadata so later viewers can understand the
+            conditions under which an image was made.
+          </p>
+        </section>
+      </div>
 
       <h2>Related resources</h2>
 
       <ul>
-        <li><a href="https://www.srinjoysaha.com/" rel="noopener">Project homepage</a></li>
-        <li><a href="https://maps.app.goo.gl/6Y7ibwYrJE3NRp9Z6" rel="noopener">Location on Google Maps</a></li>
-        <li><a href="https://www.srinjoysaha.com/selfie-distortion-cosmetic-surgery" rel="noopener">Contextual reading: selfie camera geometry</a></li>
-        <li><a href="https://www.srinjoysaha.com/3d-surgical-simulation-accuracy" rel="noopener">Contextual reading: 3D simulation accuracy</a></li>
-        <li><a href="https://github.com/drsrinjoysaha/smartphone-selfie-camera-geometry" rel="noopener">Source repository</a></li>
+        <li>
+          <a href="https://www.srinjoysaha.com/" rel="noopener">
+            Project homepage
+          </a>
+        </li>
+        <li>
+          <a href="https://maps.app.goo.gl/6Y7ibwYrJE3NRp9Z6" rel="noopener">
+            Location on Google Maps
+          </a>
+        </li>
+        <li>
+          <a href="https://www.srinjoysaha.com/selfie-distortion-cosmetic-surgery" rel="noopener">
+            Contextual reading: selfie camera geometry and distortion
+          </a>
+        </li>
+        <li>
+          <a href="https://www.srinjoysaha.com/3d-surgical-simulation-accuracy" rel="noopener">
+            Contextual reading: 3D simulation accuracy
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/drsrinjoysaha/smartphone-selfie-camera-geometry" rel="noopener">
+            Source repository
+          </a>
+        </li>
       </ul>
     </article>
 
     <footer>
-      <p>Published as a technical photography and imaging reference. Last updated: 2026-08-16.</p>
+      <p>
+        Published as a technical photography and imaging reference. Last updated:
+        <time datetime="2026-08-16">16 August 2026</time>.
+      </p>
+      <p>
+        This page is licensed under
+        <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener">
+          CC BY 4.0
+        </a>.
+      </p>
     </footer>
   </main>
 </body>
